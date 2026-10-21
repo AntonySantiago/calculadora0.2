@@ -1,0 +1,22 @@
+const app = initializeApp(firebaseConfig); inicializa conexao com firebase
+export const db = getFirestore(app); abre o caminho pra funções do firebase
+import { db } from "./firebase.js"; exporta a conexao do firebase pro arquivo necessario
+collection(db,"calculos") o Db significa a conexao do firebase e "calculos" abre meio q a coleção no banco de dados
+como se estivesse mostrando a area de trabalho
+
+return collection(db,"calculos"); o return devolve o resultado pra funcao chamante q neste caso vai devolver a coleção do firestore
+
+await addDoc(pegarColecao(),{n1,n2,operacao,resultado}); isso executa a pegar colecao e adicionar o doc na coleção com os 4 argumentos e o add doc é oq adiciona o documento na coleção
+
+export async function salvarCalculo(n1,n2,operacao,resultado) {
+    await addDoc(pegarColecao(),{n1:n1,n2:n2,operacao:operacao,resultado:resultado});
+}
+é como se estivesse montando um objeto
+
+const consulta = await getDocs(pegarColecao()); meio q obtem a referencia a coleção o getdocs pega o documento
+e const consulta meio q vira a variavel com todos os calculos
+
+consulta.forEach((documento) => {           meio q percorre os documentos e o documento é o parametro que recebe o documento atual em cada repetição
+
+const dados = documento.data();  esse daq pega os valores dentro do documento q passa pelo foreach e assume o valor deles q é apenas o n1 n2 resultado e soma
+linha.innerText = `${dados.n1} ${dados.operacao} ${dados.n2} = ${dados.resultado}`; esse acessa a variaveis dentro do dados pra deixar na linha de texto
